@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sam Boyd</title>
+    <link rel="stylesheet" href="/static/tufte.css"/>
+    <link rel="stylesheet" href="/static/site.css"/>
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<main>
+    <div class="page-wrapper">
+    <div class="sidebar">
+        <div class="name-title">Sam Boyd</div>
+        {% for blog in blogs %}
+            <div class="blog-link-wrapper">
+                <a href="#{{ blog.href }}" class="blog-link">{{ blog.title }}</a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="page-content">
+        {% for blog in blogs %}
+            <div id="{{ blog.href }}">
+            <article>
+                <section>
+                    <h1 id="mn-demo">{{ blog.title }}</h1>
+                    <p>{{ blog.created_at }}</p>
+                    {% for paragraph in blog.content %}
+                        <p>{{ paragraph }}</p>
+                    {% endfor %}
+                </section>
+            </article>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+</main>
+</body>
+</html>
