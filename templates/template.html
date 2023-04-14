@@ -7,18 +7,25 @@
     <title>Sam Boyd</title>
     <link rel="stylesheet" href="/static/tufte.css"/>
     <link rel="stylesheet" href="/static/site.css"/>
-    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/static/favicon/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <main>
     <div class="page-wrapper">
     <div class="sidebar">
+        <div><img class="icon" src="/static/favicon/android-chrome-512x512.png" alt="bad-icon"/></div>
         <div class="name-title">Sam Boyd</div>
         {% for blog in blogs %}
             <div class="blog-link-wrapper">
                 <a href="#{{ blog.href }}" class="blog-link">{{ blog.title }}</a>
             </div>
         {% endfor %}
+
+        <div class="link-wrapper">
+            <a class='github' href="https://github.com/samboyd">
+                <img class='github' src="/static/github.png" alt="link to my github"/>
+            </a>
+        </div>
     </div>
     <div class="page-content">
         {% for blog in blogs %}

@@ -19,6 +19,7 @@ cache.init_app(app)
 
 # Notion database https://www.notion.so/ea0b3a5be95542369660df5ee0a563a9?v=5c3d911f01ec4d3887ead0263a3e85d0&pvs=4
 
+@cache.cached(timeout=50)
 def get_data():
     blog_db = notion.databases.query(database_id='ea0b3a5be95542369660df5ee0a563a9')
     page_ids = [result['id'] for result in blog_db['results']]
@@ -52,7 +53,7 @@ def get_data():
     return blogs
 
 
-# @cache.cached(timeout=50)e
+# @cache.cached(timeout=50)
 @app.route('/')
 def hello_world():
     blogs = get_data()

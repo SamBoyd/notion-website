@@ -12,9 +12,8 @@ html {
 .sidebar {
     width: 25%;
     position: fixed;
-    z-index: 1; /* Stay on top */
-    /*top: 0; !* Stay at the top *!*/
-    /*left: 0;*/
+    z-index: 1;
+
     padding: 5rem 0 0 0;
     margin: 0 auto;
 
@@ -30,6 +29,13 @@ html {
 
 .name-title {
     font-weight: bolder;
+    margin-bottom: 2rem;
+}
+
+.icon {
+    max-width: 7rem;
+    max-height: 7rem;
+    border-radius: 3.5rem;
 }
 
 .blog-link-wrapper {
@@ -40,6 +46,16 @@ html {
     text-decoration: none;
 }
 
+.link-wrapper {
+    margin: 1rem 0;
+}
+.github {
+    max-width: 1.5rem;
+    max-height: 1.5rem;
+    border-radius: 0.75rem;
+
+    text-decoration: none;
+}
 
 a:link { text-decoration: none; }
 a:visited { text-decoration: none; }
@@ -49,17 +65,20 @@ a:active { text-decoration: none; }
 @media (max-width: 760px) {
     .sidebar{
         width: 100%;
-        float: none;
+        position: relative;
     }
 
     .page-content {
         width: 100%;
         float: none;
-        /*float: left;*/
-        /*margin-left: 25%;*/
+        margin-left: 0;
+    }
+
+    .name-title {
+        margin-bottom: 0;
     }
 
     article {
-        padding: 1rem 0rem;
+        padding: 1rem 0;
     }
 }
