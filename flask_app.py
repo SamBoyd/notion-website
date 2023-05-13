@@ -7,9 +7,12 @@ from flask_caching import Cache
 
 from notion_client import Client
 
+NOTION_SECRET = 'XXXXXXXXX'
+NOTION_DATABASE_ID = 'XXXXXXXXX'
+
 logger = logging.getLogger(__name__)
 
-notion = Client(auth='secret_keRIQHcf5dSHm79AtTaIlvMxZ7E7LkXTQ98rfdex2V2')
+notion = Client(auth=NOTION_SECRET)
 
 cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})
 
@@ -21,7 +24,7 @@ cache.init_app(app)
 
 @cache.cached(timeout=50)
 def get_data():
-    blog_db = notion.databases.query(database_id='ea0b3a5be95542369660df5ee0a563a9')
+    blog_db = notion.databases.query(database_id=NOTION_DATABASE_ID)
     page_ids = [result['id'] for result in blog_db['results']]
 
     blogs = []
