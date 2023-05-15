@@ -7,6 +7,7 @@ from flask import Flask, render_template
 from flask_caching import Cache
 
 from notion_client import Client
+from notion_client.errors import APIResponseError
 
 NOTION_SECRET = 'XXXXXXXXX'
 NOTION_DATABASE_ID = 'XXXXXXXXX'
@@ -25,7 +26,16 @@ cache.init_app(app)
 
 @cache.cached(timeout=50)
 def get_data():
-    blog_db = notion.databases.query(database_id=NOTION_DATABASE_ID)
+    try:
+        blog_db = notion.databases.query(database_id=NOTION_DATABASE_ID)
+    except APIResponseError as e:
+        if 'API token is invalid.' in str(e):
+            logging.info('API token is invalid')
+        elif 'path failed validation: path.database_id should be a valid uuid' in str(e):
+            logging.info('Database id is invalid')
+
+        return []
+
     page_ids = [result['id'] for result in blog_db['results']]
 
     blogs = []
