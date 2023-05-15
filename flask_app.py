@@ -2,6 +2,7 @@
 import logging
 
 from dateutil.parser import isoparse
+from datetime import datetime
 from flask import Flask, render_template
 from flask_caching import Cache
 
@@ -57,7 +58,7 @@ def get_data():
             )
         )
 
-    return blogs
+    return sorted(blogs, key=lambda page: datetime.strptime(page['created_at'], '%d %B %y'))
 
 
 # @cache.cached(timeout=50)
