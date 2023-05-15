@@ -31,6 +31,10 @@ def get_data():
 
     for page_id in page_ids:
         page = notion.pages.retrieve(page_id=page_id)
+
+        if page['properties']['Published']['checkbox'] is False:
+            continue
+
         page_title = page['properties']['Title']['title'][0]['plain_text']
         child_blocks = notion.blocks.children.list(page_id)
         text_blocks = []
